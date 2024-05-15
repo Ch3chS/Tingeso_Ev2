@@ -22,7 +22,7 @@ El proyecto consiste en una aplicación para la gestión de reparaciones de Auto
   - [x] Diseñar Back-end
   - [x] Diseñar Front-End
 - [ ] Realizar construcción de Microservicios
-  - [ ] Vehiculos
+  - [x] Vehiculos
   - [ ] Lista de reparaciones
   - [ ] Reparaciones a vehiculos
   - [ ] Reportes
