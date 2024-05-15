@@ -20,16 +20,16 @@ spring:
         - id: repairlist-service
           uri: lb://repairlist-service
           predicates:
-            - Path=/repairlist/**
+            - Path=/api/repairlist/**
         - id: repairvehicle-service
           uri: lb://repairvehicle-service
           predicates:
-            - Path=/repairvehicle/**
+            - Path=/api/repairvehicles/**
         - id: report-service
           uri: lb://report-service
           predicates:
-            - Path=/report/**
+            - Path=/api/reports/**
         - id: vehicle-service
           uri: lb://vehicle-service
           predicates:
-            - Path=/vehicle/**
+            - Path=/api/vehicles/**
