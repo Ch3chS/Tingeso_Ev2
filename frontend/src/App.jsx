@@ -10,6 +10,8 @@ import VehicleList from './components/VehicleList';
 import AddEditVehicle from './components/AddEditVehicle';
 
 import RepairList from './components/RepairList';
+import HistoryList from './components/HistoryList';
+import AddHistory from './components/AddHistory';
 
 function App() {
   return (
@@ -25,6 +27,10 @@ function App() {
               <Route path="/vehicle/edit/:id" element={<AddEditVehicle/>} />
 
               <Route path="repairs" element={<RepairList/>} />
+              
+              <Route path="histories" element={<HistoryList/>} />
+              <Route path="/history/add" element={<AddHistory/>} />
+              
 
               <Route path="*" element={<NotFound/>} />
             </Routes>
