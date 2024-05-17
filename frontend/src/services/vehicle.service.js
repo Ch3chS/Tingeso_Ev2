@@ -24,16 +24,4 @@ const getVehicleByLicensePlate = licensePlate => {
   return httpClient.get(`/api/vehicles/byLicensePlate/${licensePlate}`);
 }
 
-const getBrand = brand => {
-  return httpClient.get(`/api/vehicles/getBrand/${brand}`);
-}
-
-const getVehicleType = vehicleType => {
-  return httpClient.get(`/api/vehicles/getVehicleType/${vehicleType}`);
-}
-
-const getMotorType = motorType => {
-  return httpClient.get(`/api/vehicles/getMotorType/${motorType}`);
-}
-
-export default { getAll, create, get, update, remove, getVehicleByLicensePlate, getBrand, getVehicleType, getMotorType };
+export default { getAll, create, get, update, remove, getVehicleByLicensePlate };

@@ -9,6 +9,8 @@ import Home from './components/Home'
 import VehicleList from './components/VehicleList';
 import AddEditVehicle from './components/AddEditVehicle';
 
+import RepairList from './components/RepairList';
+
 function App() {
   return (
       <Router>
@@ -21,6 +23,8 @@ function App() {
               <Route path="vehicles" element={<VehicleList/>} />
               <Route path="/vehicle/add" element={<AddEditVehicle/>} />
               <Route path="/vehicle/edit/:id" element={<AddEditVehicle/>} />
+
+              <Route path="repairs" element={<RepairList/>} />
 
               <Route path="*" element={<NotFound/>} />
             </Routes>

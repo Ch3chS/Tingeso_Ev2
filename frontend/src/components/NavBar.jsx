@@ -15,6 +15,7 @@ function NavBar() {
             <Nav className="me-auto">
               <Nav.Link href="/vehicles">Vehiculos</Nav.Link>
               <Nav.Link href="/histories">Historiales</Nav.Link>
+              <Nav.Link href="/repairs">Reparaciones</Nav.Link>
               <NavDropdown title="Reportes" id="basic-nav-dropdown">
                 <NavDropdown.Item href="/reports/1">Reporte 1: Valores de los Vehículos para la formula</NavDropdown.Item>
                 <NavDropdown.Item href="/reports/2">Reporte 2: Tipos de reparaciones por Tipo de vehículo</NavDropdown.Item>
