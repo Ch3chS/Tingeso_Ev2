@@ -8,6 +8,7 @@ const AddEditVehicle = () => {
   const [year, setYear] = useState("");
   const [seats, setSeats] = useState("");
   const [mileage, setMileage] = useState("");
+  const [model, setModel] = useState("");
   const [brand, setBrand] = useState(1);
   const [vehicleType, setVehicleType] = useState(1);
   const [motorType, setMotorType] = useState(1);
@@ -43,7 +44,7 @@ const AddEditVehicle = () => {
   const saveVehicle = (e) => {
     e.preventDefault();
 
-    const vehicle = { licensePlate, year, seats, mileage, brand, vehicleType, motorType, id };
+    const vehicle = { licensePlate, year, seats, mileage, model, brand, vehicleType, motorType, id };
     if (id) {
       vehicleService
         .update(vehicle)
@@ -83,6 +84,7 @@ const AddEditVehicle = () => {
           setYear(vehicle.data.year);
           setSeats(vehicle.data.seats);
           setMileage(vehicle.data.mileage);
+          setModel(vehicle.data.model);
           setBrand(vehicle.data.brand);
           setVehicleType(vehicle.data.vehicleType);
           setMotorType(vehicle.data.motorType);
@@ -122,9 +124,22 @@ const AddEditVehicle = () => {
               <Form.Label>Kilometraje</Form.Label>
               <Form.Control type="number" placeholder="Ingrese kilometraje" value={mileage} onChange={(e) => setMileage(e.target.value)} />
             </Form.Group>
+
+            
           </Col>
 
           <Col>
+            <Form.Group className="mb-3">
+              <Form.Label>Marca</Form.Label>
+              <Form.Select value={brand} onChange={(e) => setBrand(e.target.value)}>
+                {brands.map((brand) => (
+                  <option key={brand.id} value={brand.id}>
+                    {brand.name}
+                  </option>
+                ))}
+              </Form.Select>
+            </Form.Group>
+
             <Form.Group className="mb-3">
               <Form.Label>Tipo de Vehículo</Form.Label>
               <Form.Select value={vehicleType} onChange={(e) => setVehicleType(e.target.value)}>
@@ -146,15 +161,10 @@ const AddEditVehicle = () => {
                 ))}
               </Form.Select>
             </Form.Group>
+
             <Form.Group className="mb-3">
-              <Form.Label>Marca</Form.Label>
-              <Form.Select value={brand} onChange={(e) => setBrand(e.target.value)}>
-                {brands.map((brand) => (
-                  <option key={brand.id} value={brand.id}>
-                    {brand.name}
-                  </option>
-                ))}
-              </Form.Select>
+              <Form.Label>Modelo</Form.Label>
+              <Form.Control type="text" placeholder="Ingrese modelo" value={model} onChange={(e) => setModel(e.target.value)} />
             </Form.Group>
           </Col>
         </Row>

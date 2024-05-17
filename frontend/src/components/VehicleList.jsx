@@ -7,15 +7,40 @@ const VehicleList = () => {
   const [vehicles, setVehicles] = useState([]);
   const navigate = useNavigate();
 
+  const brands = [
+    { id: 1, name: "Toyota" },
+    { id: 2, name: "Kia" },
+    { id: 3, name: "Honda" },
+    { id: 4, name: "Ford" },
+    { id: 5, name: "Chevrolet" },
+    { id: 6, name: "Hyundai" },
+    { id: 7, name: "Otra" },
+  ];
+
+  const vehicleTypes = [
+    { id: 1, name: "Sedan" },
+    { id: 2, name: "Hatchback" },
+    { id: 3, name: "SUV" },
+    { id: 4, name: "Pickup" },
+    { id: 5, name: "Furgoneta" },
+  ];
+
+  const motorTypes = [
+    { id: 1, name: "Gasolina" },
+    { id: 2, name: "Diésel" },
+    { id: 3, name: "Híbrido" },
+    { id: 4, name: "Eléctrico" },
+  ];
+
   const init = async () => {
     try {
       const response = await vehicleService.getAll();
       console.log("Mostrando listado de todos los vehículos.", response.data);
       
-      const vehiclesWithDetails = await Promise.all(response.data.map(async vehicle => {
-        const brandName = await vehicleService.getBrand(vehicle.brand);
-        const vehicleTypeName = await vehicleService.getVehicleType(vehicle.vehicleType);
-        const motorTypeName = await vehicleService.getMotorType(vehicle.motorType);
+      const vehiclesWithDetails = response.data.map(vehicle => {
+        const brandName = brands.find(brand => brand.id === vehicle.brand).name;
+        const vehicleTypeName = vehicleTypes.find(type => type.id === vehicle.vehicleType).name;
+        const motorTypeName = motorTypes.find(type => type.id === vehicle.motorType).name;
         
         return {
           ...vehicle,
@@ -23,7 +48,7 @@ const VehicleList = () => {
           vehicleType: vehicleTypeName,
           motorType: motorTypeName,
         };
-      }));
+      });
 
       setVehicles(vehiclesWithDetails);
     } catch (error) {
