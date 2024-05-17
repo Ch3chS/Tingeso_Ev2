@@ -33,3 +33,14 @@ spring:
           uri: lb://vehicle-service
           predicates:
             - Path=/api/vehicles/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"

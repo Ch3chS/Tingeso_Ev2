@@ -58,5 +58,24 @@ public class VehicleController {
 		VehicleEntity vehicle = service.getByLicensePlate(licensePlate);
 		return ResponseEntity.ok(vehicle);
 	}
+
+	@GetMapping("/getBrand/{brand}")
+	public ResponseEntity<String> getBrand(@PathVariable int brand) {
+		String brandName = service.getBrandString(brand);
+		return ResponseEntity.ok(brandName);
+	}
+
+	@GetMapping("/getVehicleType/{vehicleType}")
+	public ResponseEntity<String> getVehicleType(@PathVariable int vehicleType) {
+		String vehicleTypeName = service.getVehicleTypeString(vehicleType);
+		return ResponseEntity.ok(vehicleTypeName);
+	}
+
+	@GetMapping("/getMotorType/{motorType}")
+	public ResponseEntity<String> getMotorType(@PathVariable int motorType) {
+		String motorTypeName = service.getMotorTypeString(motorType);
+		return ResponseEntity.ok(motorTypeName);
+	}
+
 	
 }

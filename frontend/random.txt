@@ -1,0 +1,8 @@
+nuevo componente: ¿Clase o función? -> función
+
+componente tipo función: función simple en javascript, ojala del tipo flecha (=>) 
+    - Necesitan tener un estado, ¿Que valores tienen sus atributos internos?
+        - HUBS: useState([]);
+        - useEfect: Para que las cosas lleguen antes de que se muestre en pantalla
+        - todos los componentes dibujan algo por pantalla (html)
+        
