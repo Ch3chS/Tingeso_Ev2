@@ -12,6 +12,8 @@ import AddEditVehicle from './components/AddEditVehicle';
 import RepairList from './components/RepairList';
 import HistoryList from './components/HistoryList';
 import AddHistory from './components/AddHistory';
+import RepairHistoryList from './components/RepairHistoryList';
+import AddRepair from './components/AddRepair';
 
 function App() {
   return (
@@ -30,6 +32,8 @@ function App() {
               
               <Route path="histories" element={<HistoryList/>} />
               <Route path="/history/add" element={<AddHistory/>} />
+              <Route path="/history/:id/repairs" element={<RepairHistoryList/>} />
+              <Route path="/history/:id/addRepair" element={<AddRepair/>} />
               
 
               <Route path="*" element={<NotFound/>} />

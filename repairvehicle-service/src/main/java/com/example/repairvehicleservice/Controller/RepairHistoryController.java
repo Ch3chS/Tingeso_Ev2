@@ -52,4 +52,10 @@ public class RepairHistoryController {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
+
+	@GetMapping("/byHistory/{historyId}")
+    public ResponseEntity<List<RepairHistoryEntity>> getRepairHistoryByHistoryId(@PathVariable int historyId) {
+        List<RepairHistoryEntity> repairHistories = service.findByHistoryId(historyId);
+        return ResponseEntity.ok(repairHistories);
+    }
 }

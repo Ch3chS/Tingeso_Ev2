@@ -6,6 +6,7 @@ import com.example.repairvehicleservice.Entity.RepairHistoryEntity;
 import com.example.repairvehicleservice.Repository.RepairHistoryRepository;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -39,4 +40,9 @@ public class RepairHistoryService {
             throw new Exception("Entity " + id + " does not exist");
         }
     }
+
+    public List<RepairHistoryEntity> findByHistoryId(int historyId) {
+        return repo.findByHistoryId(historyId);
+    }
+
 }

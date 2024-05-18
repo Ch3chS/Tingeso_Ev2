@@ -20,4 +20,8 @@ const remove = id => {
     return httpClient.delete(`/api/repairvehicles/repairhistory/${id}`);
 }
 
-export default { getAll, create, get, update, remove };
+const getRepairHistory = historyId => {
+    return httpClient.get(`/api/repairvehicles/repairhistory/byHistory/${historyId}`);
+}
+
+export default { getAll, create, get, update, remove, getRepairHistory };
