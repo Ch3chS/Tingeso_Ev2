@@ -24,4 +24,8 @@ const calculateTotalCost = id => {
     return httpClient.get(`/api/repairvehicles/history/totalCost/${id}`);
 }
 
-export default { getAll, create, get, update, remove, calculateTotalCost };
+const applyVoucher = (id, voucherId) => {
+    return httpClient.post(`/api/repairvehicles/history/apply/${id}/${voucherId}`);
+}
+
+export default { getAll, create, get, update, remove, calculateTotalCost, applyVoucher };

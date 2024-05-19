@@ -24,7 +24,7 @@ public class VehicleModel {
         voucherApplied = b;
     }
 
-    public boolean isVoucherApplied() {
+    public boolean getVoucherApplied() {
         return voucherApplied;
     }
 }

@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import historyService from "../services/history.service";
 import vehicleService from "../services/vehicle.service";
 import { Table, Button } from "react-bootstrap";
-import { toLocalDate, toLocalTime } from "../utils"; 
+import { toLocalDate, toLocalTime } from "../utils";
 
 const HistoryList = () => {
   const [histories, setHistories] = useState([]);
@@ -28,7 +28,6 @@ const HistoryList = () => {
   useEffect(() => {
     init();
   }, []);
-  
 
   const getVehicles = async (histories) => {
     for (const history of histories) {
@@ -45,7 +44,7 @@ const HistoryList = () => {
   const handleDelete = (id) => {
     console.log("Printing id", id);
     const confirmDelete = window.confirm(
-      "¿Esta seguro que desea borrar este historial?"
+      "¿Estás seguro de que deseas borrar este historial?"
     );
     if (confirmDelete) {
       historyService
@@ -72,7 +71,7 @@ const HistoryList = () => {
     const completedDate = new Date();
     const completedDateStr = toLocalDate(completedDate);
     const completedTimeStr = toLocalTime(completedDate);
-  
+
     historyService.get(id)
       .then((response) => {
         const updatedHistory = {
@@ -80,7 +79,7 @@ const HistoryList = () => {
           completedDate: completedDateStr,
           completedTime: completedTimeStr
         };
-  
+
         historyService.update(updatedHistory)
           .then((response) => {
             console.log("Historial completado: ", response.data);
@@ -90,12 +89,12 @@ const HistoryList = () => {
       })
       .catch((error) => {});
   };
-  
+
   const handleRelease = (id) => {
     const releaseDate = new Date();
     const releaseDateStr = toLocalDate(releaseDate);
     const releaseTimeStr = toLocalTime(releaseDate);
-  
+
     historyService.get(id)
       .then((response) => {
         const updatedHistory = {
@@ -103,7 +102,7 @@ const HistoryList = () => {
           releaseDate: releaseDateStr,
           releaseTime: releaseTimeStr
         };
-  
+
         historyService.update(updatedHistory)
           .then((response) => {
             console.log("Historial liberado: ", response.data);
@@ -117,7 +116,6 @@ const HistoryList = () => {
                     history.id === id ? {...history, ...response.data} : history
                   )
                 );
-                // Llamada a init() después de actualizar el estado
                 init();
               })
               .catch((error) => {
@@ -128,9 +126,6 @@ const HistoryList = () => {
       })
       .catch((error) => {});
   };
-  
-  
-  
 
   const handleApplyBonus = (id) => {
     console.log("Aplicando bono al historial con id: ", id);
@@ -168,7 +163,10 @@ const HistoryList = () => {
           </tr>
         </thead>
         <tbody>
-        {histories.map((historyItem) => {
+          {histories.map((historyItem) => {
+            const vehicle = vehicles.find((v) => v.licensePlate === historyItem.licensePlate);
+            const showApplyBonusButton = vehicle && !vehicle.voucherApplied;
+  
             return (
               <tr key={historyItem.id}>
                 <td>{historyItem.licensePlate}</td>
@@ -184,30 +182,25 @@ const HistoryList = () => {
                 <td>{historyItem.iva}</td>
                 <td>{historyItem.totalCost}</td>
                 <td>
-                  <div style={{ marginBottom: '5px' }}>
-                    <Button variant="success" onClick={() => handleViewRepairs(historyItem.id)}>
-                      Ver  Listado de Reparaciones
-                    </Button>
-                    {' '}
-                    <Button variant="danger" onClick={() => handleDelete(historyItem.id)}>
-                      Eliminar
-                    </Button>
-                  </div>
+                  <Button variant="success" onClick={() => handleViewRepairs(historyItem.id)}>
+                    Ver Reparaciones
+                  </Button>
+                  <Button variant="danger" onClick={() => handleDelete(historyItem.id)}>
+                    Eliminar
+                  </Button>
                   {!historyItem.completedDate && (
                     <Button variant="warning" onClick={() => handleComplete(historyItem.id)}>
                       Completar
                     </Button>
                   )}
-                  {' '}
                   {historyItem.completedDate && !historyItem.releaseDate && (
-                      <Button variant="primary" onClick={() => handleRelease(historyItem.id)}>
-                        Liberar
-                      </Button>
+                    <Button variant="primary" onClick={() => handleRelease(historyItem.id)}>
+                      Liberar
+                    </Button>
                   )}
-                  {' '}
-                  {historyItem.completedDate && historyItem.releaseDate && (
+                  {showApplyBonusButton && historyItem.completedDate && historyItem.releaseDate && (
                     <Button variant="info" onClick={() => handleApplyBonus(historyItem.id)}>
-                      Aplicar bonus
+                      Aplicar bono
                     </Button>
                   )}
                 </td>
@@ -218,6 +211,6 @@ const HistoryList = () => {
       </Table>
     </div>
   );
-};
+}
 
 export default HistoryList;

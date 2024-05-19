@@ -1,13 +1,14 @@
 package com.example.repairvehicleservice.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.example.repairvehicleservice.Config.RestTemplateConfig;
 import com.example.repairvehicleservice.Entity.HistoryEntity;
 import com.example.repairvehicleservice.Entity.RepairHistoryEntity;
+import com.example.repairvehicleservice.Entity.VoucherEntity;
 import com.example.repairvehicleservice.Model.VehicleModel;
 import com.example.repairvehicleservice.Repository.HistoryRepository;
 
@@ -33,6 +34,9 @@ public class HistoryService {
 
     @Autowired
     RepairHistoryService repairHistoryService;
+
+    @Autowired
+    VoucherService voucherService;
 
     @Autowired
     RestTemplate restTemplate;
@@ -63,6 +67,30 @@ public class HistoryService {
         }
     }
 
+    public void applyVoucher(Long id, int voucherId) throws Exception {
+        HistoryEntity history = repo.findById(id).get();
+        VoucherEntity voucher = voucherService.getById((long) voucherId);
+    
+        // Busca el vehículo por su patente
+        VehicleModel vehicle = getVehicle(history.getLicensePlate());
+    
+        // Verifica si ya se ha aplicado un bono al vehículo
+        if (vehicle.getVoucherApplied()) {
+            throw new Exception("Ya se ha aplicado un bono a este vehículo.");
+        }
+    
+        // Aplica el bono
+        history.setTotalCost(history.getTotalCost() - voucher.getAmount());
+        repo.save(history);
+    
+        // Marca el bono como aplicado en el vehículo
+        vehicle.setVoucherApplied(true);
+        updateVehicle(vehicle);
+    
+        // Elimina el bono
+        voucherService.delete((long) voucherId);
+    }
+
 
 
     // -------------- Calculo del costo total ------------------
@@ -75,6 +103,12 @@ public class HistoryService {
         VehicleModel vehicle = restTemplate.getForObject("http://vehicle-service/api/vehicles/byLicensePlate/" + licensePlate, VehicleModel.class);
         return vehicle;
     }
+
+    public VehicleModel updateVehicle(VehicleModel updatedVehicle) {
+        String updateUrl = "http://vehicle-service/api/vehicles";
+        return restTemplate.exchange(updateUrl, HttpMethod.PUT, new HttpEntity<>(updatedVehicle), VehicleModel.class).getBody();
+    }
+
 
     public double totalSurcharges(int total, VehicleModel vehicle, HistoryEntity history) {
 

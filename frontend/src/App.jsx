@@ -14,6 +14,8 @@ import HistoryList from './components/HistoryList';
 import AddHistory from './components/AddHistory';
 import RepairHistoryList from './components/RepairHistoryList';
 import AddRepair from './components/AddRepair';
+import AddVouchers from './components/AddVouchers';
+import ApplyVoucher from './components/ApplyVoucher';
 
 function App() {
   return (
@@ -35,6 +37,8 @@ function App() {
               <Route path="/history/:id/repairs" element={<RepairHistoryList/>} />
               <Route path="/history/:id/addRepair" element={<AddRepair/>} />
               
+              <Route path="/vouchers/insert" element={<AddVouchers/>} />
+              <Route path="/history/:id/voucher/apply" element={<ApplyVoucher/>} />
 
               <Route path="*" element={<NotFound/>} />
             </Routes>

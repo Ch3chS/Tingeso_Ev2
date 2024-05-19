@@ -58,4 +58,16 @@ public class HistoryController {
         return service.totalCost(id);
     }
 
+	@PostMapping("/apply/{id}/{voucherId}")
+    public ResponseEntity<Boolean> applyVoucher(@PathVariable Long id, @PathVariable int voucherId) {
+        try {
+            service.applyVoucher(id, voucherId);
+            return ResponseEntity.ok(true);
+        } catch (Exception e) {
+            // Maneja la excepción aquí
+            e.printStackTrace();
+            return ResponseEntity.status(500).body(false);
+        }
+    }
+
 }
