@@ -16,6 +16,8 @@ import RepairHistoryList from './components/RepairHistoryList';
 import AddRepair from './components/AddRepair';
 import AddVouchers from './components/AddVouchers';
 import ApplyVoucher from './components/ApplyVoucher';
+import R1 from './components/R1';
+import R2 from './components/R2';
 
 function App() {
   return (
@@ -39,6 +41,9 @@ function App() {
               
               <Route path="/vouchers/insert" element={<AddVouchers/>} />
               <Route path="/history/:id/voucher/apply" element={<ApplyVoucher/>} />
+
+              <Route path="/reports/1" element={<R1/>} />
+              <Route path="/reports/2" element={<R2/>} />
 
               <Route path="*" element={<NotFound/>} />
             </Routes>

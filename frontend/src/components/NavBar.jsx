@@ -17,10 +17,8 @@ function NavBar() {
               <Nav.Link href="/histories">Taller</Nav.Link>
               <Nav.Link href="/repairs">Precios</Nav.Link>
               <NavDropdown title="Reportes" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/reports/1">Reporte 1: Valores de los Vehículos para la formula</NavDropdown.Item>
-                <NavDropdown.Item href="/reports/2">Reporte 2: Tipos de reparaciones por Tipo de vehículo</NavDropdown.Item>
-                <NavDropdown.Item href="/reports/3">Reporte 3: Tiempos promedio de reparación por Marca</NavDropdown.Item>
-                <NavDropdown.Item href="/reports/4">Reporte 4: Reparaciones por Tipo de motor</NavDropdown.Item>
+                <NavDropdown.Item href="/reports/1">Reporte 1: Tipos de reparaciones por tipo de vehiculo</NavDropdown.Item>
+                <NavDropdown.Item href="/reports/2">Reporte 2: Variaciones en tipos de reparaciones</NavDropdown.Item>
               </NavDropdown>
             </Nav>
             <Nav className="ml-auto">
