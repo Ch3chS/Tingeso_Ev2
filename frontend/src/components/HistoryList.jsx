@@ -95,7 +95,7 @@ const HistoryList = () => {
     const releaseDate = new Date();
     const releaseDateStr = toLocalDate(releaseDate);
     const releaseTimeStr = toLocalTime(releaseDate);
-
+  
     historyService.get(id)
       .then((response) => {
         const updatedHistory = {
@@ -103,16 +103,34 @@ const HistoryList = () => {
           releaseDate: releaseDateStr,
           releaseTime: releaseTimeStr
         };
-
+  
         historyService.update(updatedHistory)
           .then((response) => {
             console.log("Historial liberado: ", response.data);
-            init();
+            // Llamada a calculateTotalCost
+            historyService.calculateTotalCost(id)
+              .then((response) => {
+                console.log("Costo total calculado: ", response.data);
+                // Actualizar los valores en el estado
+                setHistories(prevHistories => 
+                  prevHistories.map(history => 
+                    history.id === id ? {...history, ...response.data} : history
+                  )
+                );
+                // Llamada a init() después de actualizar el estado
+                init();
+              })
+              .catch((error) => {
+                console.log("Error al calcular el costo total: ", error);
+              });
           })
           .catch((error) => {});
       })
       .catch((error) => {});
   };
+  
+  
+  
 
   const handleApplyBonus = (id) => {
     console.log("Aplicando bono al historial con id: ", id);

@@ -23,8 +23,8 @@ El proyecto consiste en una aplicación para la gestión de reparaciones de Auto
   - [x] Diseñar Front-End
 - [ ] Realizar construcción de Microservicios
   - [x] Vehiculos
-  - [ ] Lista de reparaciones
-  - [ ] Reparaciones a vehiculos
+  - [x] Lista de reparaciones
+  - [x] Reparaciones a vehiculos
   - [ ] Reportes
 - [ ] Refinar Front-end de la entrega 1
 - [ ] Dockerfiles y DockerHub
@@ -32,3 +32,4 @@ El proyecto consiste en una aplicación para la gestión de reparaciones de Auto
 - [ ] Preparar entrega
 - [ ] Pulir README.md
 - [ ] Presentar Aplicación
+

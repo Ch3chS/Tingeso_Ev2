@@ -55,7 +55,7 @@ public class RepairHistoryController {
 
 	@GetMapping("/byHistory/{historyId}")
     public ResponseEntity<List<RepairHistoryEntity>> getRepairHistoryByHistoryId(@PathVariable int historyId) {
-        List<RepairHistoryEntity> repairHistories = service.findByHistoryId(historyId);
+        List<RepairHistoryEntity> repairHistories = service.getByHistoryId(historyId);
         return ResponseEntity.ok(repairHistories);
     }
 }

@@ -52,4 +52,10 @@ public class HistoryController {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
+
+	@GetMapping("/totalCost/{id}")
+    public int calculateTotalCost(@PathVariable Long id) {
+        return service.totalCost(id);
+    }
+
 }

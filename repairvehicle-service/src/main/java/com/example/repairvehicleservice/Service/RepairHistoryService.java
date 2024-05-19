@@ -41,7 +41,7 @@ public class RepairHistoryService {
         }
     }
 
-    public List<RepairHistoryEntity> findByHistoryId(int historyId) {
+    public List<RepairHistoryEntity> getByHistoryId(int historyId) {
         return repo.findByHistoryId(historyId);
     }
 

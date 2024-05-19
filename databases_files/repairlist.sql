@@ -1,6 +1,6 @@
 -- Insertar datos en la tabla repair_types
 
-INSERT INTO repair_list (cost, motor_type, repair_type) VALUES
+INSERT INTO repair_list_entity (cost, motor_type, repair_type) VALUES
 (120000, 1, 1),
 (120000, 2, 1),
 (180000, 3, 1),
