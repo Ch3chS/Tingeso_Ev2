@@ -1,4 +1,4 @@
 FROM openjdk:11
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} repairvehicle-service-0.0.1-SNAPSHOT.jar
-ENTRYPOINT ["java","-jar","/repairvehicle-service-0.0.1-SNAPSHOT.jar"]
+ARG JAR_FILE=./target/*.jar
+COPY ${JAR_FILE} ms-repairvehicle.jar
+ENTRYPOINT ["java","-jar","/ms-repairvehicle.jar"]
