@@ -18,6 +18,7 @@ import AddVouchers from './components/AddVouchers';
 import ApplyVoucher from './components/ApplyVoucher';
 import R1 from './components/R1';
 import R2 from './components/R2';
+import VehicleHistoryList from './components/VehicleHistoryList';
 
 function App() {
   return (
@@ -44,6 +45,10 @@ function App() {
 
               <Route path="/reports/1" element={<R1/>} />
               <Route path="/reports/2" element={<R2/>} />
+
+
+              <Route path="/vehiclehistories" element={<VehicleHistoryList/>} />
+              
 
               <Route path="*" element={<NotFound/>} />
             </Routes>
