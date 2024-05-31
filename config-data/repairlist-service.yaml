@@ -1,10 +1,16 @@
 server:
   port: 0
+spring:
+  datasource:
+    url: jdbc:postgresql://192.168.1.105:5432/repairlist
+    username: postgres
+    password: postgres
+    
 eureka:
+  instance:
+    preferIpAddress: true
   client:
     fetch-registry: true
     register-with-eureka: true
     service-url:
-      default-zone: http://192.168.1.105:8761/eureka
-  instance:
-    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+      defaultZone: http://eureka-server-service:8761/eureka/
