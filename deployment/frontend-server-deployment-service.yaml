@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-server-deployment
+  labels:
+    app: frontend-server-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: frontend-server-deployment
+  template:
+    metadata:
+      labels:
+        app: frontend-server-deployment
+    spec:
+      containers:
+      - name: frontend-server
+        image: donex/autofix-ms-frontend-image
+        ports:
+        - containerPort: 80
+        env:
+        - name: BACKEND_SERVER
+          valueFrom:
+            configMapKeyRef:
+              name: frontend-config-map
+              key: BACKEND-HOST
+        - name: BACKEND_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: frontend-config-map
+              key: BACKEND-PORT
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-server-service
+  labels:
+    app: frontend-server-service
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+  selector:
+    app: frontend-server-deployment
+  type: LoadBalancer

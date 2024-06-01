@@ -1,0 +1,44 @@
+Basico
+kubectl apply -f postgres-secrets.yaml 
+kubectl apply -f postgres-config-map.yaml 
+kubectl apply -f config-server-deployment-service.yaml 
+kubectl apply -f eureka-server-deployment-service.yaml 
+kubectl apply -f gateway-server-deployment-service.yaml 
+kubectl apply -f frontend-config-map.yaml 
+kubectl apply -f frontend-server-deployment-service.yaml 
+kubectl apply -m repairlist-db-deployment-service.yaml
+kubectl apply -f repairvehicle-db-deployment-service.yaml 
+kubectl apply -f vehicle-db-deployment-service.yaml 
+kubectl get pods
+
+Creando bases de datos
+kubectl exec -it repairlist-db-deployment-<pod> -- /bin/bash
+psql -U postgres
+create database repairlist;
+exit;
+exit
+kubectl exec -it repairvehicle-db-deployment-<pod> -- /bin/bash
+psql -U postgres
+create database repairvehicle;
+exit;
+exit
+kubectl exec -it vehicle-db-deployment-<pod> -- /bin/bash
+psql -U postgres
+create database vehicle;
+exit;
+exit
+
+Microservicios
+kubectl apply -f ms-repairlist-deployment-service.yaml 
+kubectl apply -f ms-repairvehicle-deployment-service.yaml
+kubectl apply -f ms-report-deployment-service.yaml 
+kubectl apply -f ms-vehicle-deployment-service.yaml 
+clear
+kubectl get pods
+
+Rellenando repairlist
+kubectl cp repairlist.sql repairlist-db-deployment-<pod>:/home
+kubectl exec -it repairlist-db-deployment-<pod> -- /bin/bash
+cd home
+psql -U postgres repairlist < repairlist.sql 
+exit

@@ -11,6 +11,6 @@ data:
   DB_HOST_VEHICLE: vehicle-db-service
   DB_PORT_VEHICLE: "5433"
   DB_DBNAME_VEHICLE: vehicle
-  DB_HOST_REPAIRVEHICLE: repairvehicle-db-service  # Corregido
-  DB_PORT_REPAIRVEHICLE: "5434"                   # Corregido
-  DB_DBNAME_REPAIRVEHICLE: repairvehicle          # Corregido
+  DB_HOST_REPAIRVEHICLE: repairvehicle-db-service
+  DB_PORT_REPAIRVEHICLE: "5434"
+  DB_DBNAME_REPAIRVEHICLE: repairvehicle
