@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: frontend-config-map
 data:
-  BACKEND-HOST: gateway-server-service
-  BACKEND-PORT: "8080"
+  BACKEND-HOST: 192.168.49.2
+  BACKEND-PORT: "30001"

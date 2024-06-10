@@ -6,7 +6,7 @@ kubectl apply -f eureka-server-deployment-service.yaml
 kubectl apply -f gateway-server-deployment-service.yaml 
 kubectl apply -f frontend-config-map.yaml 
 kubectl apply -f frontend-server-deployment-service.yaml 
-kubectl apply -m repairlist-db-deployment-service.yaml
+kubectl apply -f repairlist-db-deployment-service.yaml
 kubectl apply -f repairvehicle-db-deployment-service.yaml 
 kubectl apply -f vehicle-db-deployment-service.yaml 
 kubectl get pods

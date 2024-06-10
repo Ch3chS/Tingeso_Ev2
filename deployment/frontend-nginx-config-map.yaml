@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-nginx-config-map
+data:
+  nginx.conf: |
+    server {
+        listen 80;
+        charset utf-8;
+        access_log off;
+
+        location / {
+            root   /usr/share/nginx/html;
+            index  index.html index.htm;
+            try_files $uri $uri/ /index.html;
+        }
+    }
