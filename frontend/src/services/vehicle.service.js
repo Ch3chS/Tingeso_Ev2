@@ -1,7 +1,9 @@
 import httpClient from "../http-common";
 
 const getAll = () => {
-    return httpClient.get('/api/vehicles');
+    const url = '/api/vehicles';
+    console.log(`URL de la solicitud: ${httpClient.defaults.baseURL}${url}`); // Agrega esta línea para imprimir la URL completa
+    return httpClient.get(url);
 }
 
 const get = id => {
